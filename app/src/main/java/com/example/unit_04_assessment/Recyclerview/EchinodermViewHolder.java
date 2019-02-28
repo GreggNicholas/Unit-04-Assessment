@@ -18,17 +18,16 @@ public class EchinodermViewHolder extends RecyclerView.ViewHolder {
     private static final String WIKI = "wiki";
     private TextView textView;
     private ImageView echinodermImage;
-    private EchinodermAdapter adapter;
 
 
-    public EchinodermViewHolder(@NonNull View itemView, EchinodermAdapter adapter) {
+    public EchinodermViewHolder(@NonNull View itemView) {
         super(itemView);
         textView = itemView.findViewById(R.id.text_itemview);
         echinodermImage = itemView.findViewById(R.id.image_itemview);
-        this.adapter = adapter;
+
     }
 
-    public static void onBind(final EchinodermModel echinodermModel) {
+    public void onBind(final EchinodermModel echinodermModel) {
         textView.setText(echinodermModel.getAnimal());
         Picasso.get().load(echinodermModel.getImage()).into(echinodermImage);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +40,7 @@ public class EchinodermViewHolder extends RecyclerView.ViewHolder {
                 intent.putExtra(IMAGE, echinoImage);
                 intent.putExtra(ANIMAL, echinoAnimal);
                 intent.putExtra(WIKI, echinoWiki);
-                itemView.getContext().startActivity(intent);
+                v.getContext().startActivity(intent);
 
             }
         });

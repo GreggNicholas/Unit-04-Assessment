@@ -8,4 +8,11 @@ public class EchinodermArrayList {
     public EchinodermArrayList(List<EchinodermModel> message) {
         this.message = message;
     }
+
+
+    public List<EchinodermModel> getMessage() {
+        return message;
+    }
+
+
 }

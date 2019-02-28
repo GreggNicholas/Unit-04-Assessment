@@ -28,12 +28,12 @@ public class EchinodermAdapter extends RecyclerView.Adapter<EchinodermViewHolder
     @Override
     public EchinodermViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_view, viewGroup, false);
-        return new EchinodermViewHolder(view, this);
+        return new EchinodermViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EchinodermViewHolder echinodermViewHolder, int position) {
-        EchinodermViewHolder.onBind(echinodermList.get(position));
+        echinodermViewHolder.onBind(echinodermList.get(position));
 
 
     }

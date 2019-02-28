@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Retrofit retrofit = RetrofitSingleton.getInstance();
-        final EchinodermsService getService = retrofit.create(EchinodermsService.class);
-        getService.getEchinoderms().enqueue(new Callback<EchinodermsService>() {
+        EchinodermsService getService = retrofit.create(EchinodermsService.class);
+        Call<EchinodermArrayList> echinodermCall = getService.getEchinodermsList();
+        echinodermCall.enqueue(new Callback<EchinodermArrayList>() {
             @Override
-            public void onResponse(Call<EchinodermsService> call, Response<EchinodermsService> response) {
-                Log.d(TAG, "onResponse: " + getService.getEchinoderms());
-                final List<EchinodermModel> echinodermLists = response.body().getEchinoderms().get;
+            public void onResponse(Call<EchinodermArrayList> call, Response<EchinodermArrayList> response) {
+                Log.d(TAG, "onResponse: " + response.body().getMessage().get(0).getImage());
+                final List<EchinodermModel> echinodermLists = response.body().getMessage();
                 EchinodermAdapter adapter = new EchinodermAdapter(echinodermLists);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<EchinodermsService> call, Throwable t) {
+            public void onFailure(Call<EchinodermArrayList> call, Throwable t) {
                 Log.d("TAG", "onResponse: " + t.toString());
             }
         });
