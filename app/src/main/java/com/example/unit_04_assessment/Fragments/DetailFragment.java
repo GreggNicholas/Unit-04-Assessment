@@ -28,7 +28,6 @@ public class DetailFragment extends Fragment {
     private Button button;
     private String animalText;
     private String imageString;
-    private String wikiText;
     private ImageView imageView;
     private TextView textView;
     private View rootView;
@@ -55,21 +54,21 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-if(getArguments() != null) {
-    animalText = getArguments().getString(ANIMAL);
-    imageString = getArguments().getString(IMAGE);
-    wikiText = getArguments().getString(WIKI);
-}
+        if (getArguments() != null) {
+            animalText = getArguments().getString(ANIMAL);
+            imageString = getArguments().getString(IMAGE);
+            website = getArguments().getString(WIKI);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-      imageView = rootView.findViewById(R.id.animalimage_detailfrag);
+        rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        imageView = rootView.findViewById(R.id.animalimage_detailfrag);
         textView = rootView.findViewById(R.id.text_itemview);
-       button= rootView.findViewById(R.id.button_detailfrag);
-        return  rootView;
+        button = rootView.findViewById(R.id.button_detailfrag);
+        return rootView;
     }
 
 
@@ -85,7 +84,6 @@ if(getArguments() != null) {
             }
         });
     }
-
 
 
     @Override
